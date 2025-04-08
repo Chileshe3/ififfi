@@ -1,38 +1,240 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
+.mysterious-bg {
+  background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+  min-height: 100vh;
+  padding: 2rem;
+  animation: bgPulse 15s ease infinite;
+}
+
+.phenomenon-header {
+  color: #fff;
+  padding: 2rem;
+  position: relative;
+}
+
+.phenomenon-header h1 {
+  font-size: 4rem;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.main-quote {
+  font-size: 1.8rem;
+  color: #61dafb;
+  text-shadow: 0 0 10px rgba(97, 218, 251, 0.5);
+  margin: 2rem 0;
+}
+
+.quote-banner {
+  color: #fff;
+  padding: 2rem;
+  font-style: italic;
+  font-size: 1.4rem;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.quote-banner p {
+  margin: 1rem 0;
+  animation: fadeInOut 8s ease infinite;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.phenomenon-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  color: white;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.phenomenon-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 30px rgba(97, 218, 251, 0.3);
+}
+
+.energy-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.magical .energy-field {
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.2), transparent);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.cosmic .energy-field {
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent);
 }
 
-.App-link {
-  color: #61dafb;
+.mystical .energy-field {
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.2), transparent);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ethereal .energy-field {
+  background: radial-gradient(circle, rgba(147, 112, 219, 0.2), transparent);
+}
+
+.phenomenon-card:hover .energy-field {
+  opacity: 1;
+}
+
+.floating-orb {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #fff, #61dafb);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: float 3s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(97, 218, 251, 0.7);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #61dafb; }
+  to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #61dafb; }
+}
+
+@keyframes bgPulse {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.gear-system {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+  height: 200px;
+}
+
+.gear {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    #2c3e50,
+    #3498db,
+    #2c3e50
+  );
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 0 15px rgba(97, 218, 251, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.gear::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  height: 20%;
+  background: #24243e;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.gear::after {
+  content: '';
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  right: -15%;
+  bottom: -15%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 20deg,
+    rgba(97, 218, 251, 0.8) 20deg,
+    rgba(97, 218, 251, 0.8) 30deg
+  );
+  border-radius: 50%;
+  z-index: -1;
+  filter: drop-shadow(0 0 5px rgba(97, 218, 251, 0.5));
+}
+
+.driving {
+  width: 80px;
+  height: 80px;
+  top: 0;
+  left: 0;
+  animation: rotate 8s linear infinite;
+}
+
+.driven {
+  width: 100px;
+  height: 100px;
+  top: 60px;
+  left: 60px;
+  animation: rotate-reverse 10s linear infinite;
+}
+
+.driven-small {
+  width: 60px;
+  height: 60px;
+  top: 120px;
+  left: 20px;
+  animation: rotate 6s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.loading-state {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(97, 218, 251, 0.3);
+  border-radius: 50%;
+  border-top-color: #61dafb;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
