@@ -1,0 +1,68 @@
+.mysteries-page {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.mysteries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mystery-item {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(147, 112, 219, 0.3);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mystery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  background: linear-gradient(45deg,
+    transparent 0%,
+    rgba(147, 112, 219, 0.1) 50%,
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.mystery-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(147, 112, 219, 0.2);
+}
+
+.mystery-item:hover::after {
+  opacity: 1;
+}
+
+.mystery-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.mystery-item h3 {
+  color: #9370db;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
+}
+
+.mystery-item p {
+  color: #fff;
+  line-height: 1.6;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}

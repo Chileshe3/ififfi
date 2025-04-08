@@ -1,0 +1,76 @@
+.sitemap-page {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-section {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center,
+    rgba(0, 255, 255, 0.1) 0%,
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.map-section:hover::before {
+  opacity: 1;
+}
+
+.map-section h2 {
+  color: #00ffff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.realm-list {
+  list-style: none;
+  padding: 0;
+}
+
+.realm-list li {
+  color: #fff;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.realm-list li:hover {
+  transform: translateX(10px);
+  color: #00ffff;
+}
+
+.realm-icon {
+  font-size: 1.5rem;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.realm-list li:hover .realm-icon {
+  opacity: 1;
+}

@@ -1,0 +1,51 @@
+.phenomena-page {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.page-title {
+  color: #00ffff;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.phenomena-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.phenomenon-item {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.phenomenon-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+.phenomenon-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.phenomenon-item h3 {
+  color: #00ffff;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.phenomenon-item p {
+  color: #fff;
+  line-height: 1.6;
+}

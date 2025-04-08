@@ -1,57 +1,49 @@
+import React, { useState } from 'react';
+import Home from './components/Home';
+import About from './components/About';
+import Phenomena from './components/Phenomena';
+import Artifacts from './components/Artifacts';
+import Mysteries from './components/Mysteries';
+import Sitemap from './components/Sitemap';
+import Privacy from './components/Privacy';
+import Terms from './components/Terms';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 import './App.css';
 
-function App() { 
+function App() {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const renderPage = () => {
+    switch(currentPage) {
+      case 'home':
+        return <Home />;
+      case 'about':
+        return <About />;
+      case 'phenomena':
+        return <Phenomena />;
+      case 'artifacts':
+        return <Artifacts />;
+      case 'mysteries':
+        return <Mysteries />;
+      case 'sitemap':
+        return <Sitemap />;
+      case 'privacy':
+        return <Privacy />;
+      case 'terms':
+        return <Terms />;
+      default:
+        return <Home />;
+    }
+  };
+
   return (
     <div className="App">
-      <div className="mysterious-bg">
-        <header className="phenomenon-header">
-          <h1>Beyond Reality</h1>
-          <div className="floating-orb"></div>
-          <p className="main-quote">"Imagination can take you anywhere"</p>
-          <div className="gear-system">
-            <div className="gear driving"></div>
-            <div className="gear driven"></div>
-            <div className="gear driven-small"></div>
-          </div>
-        </header>
-        
-        <div className="quote-banner">
-          <p>"To the stars and beyond"</p>
-          <p>"No limits, no rules, just pure freedom to explore, heal, create and become all in a single thought"</p>
-          <p>"In the depths of mystery lies the truth of existence"</p>
-        </div>
-
-        <main className="content">
-          <section className="phenomenon-card magical">
-            <h2>The Bermuda Triangle</h2>
-            <p>Where ships and aircraft vanish without a trace...</p>
-            <div className="energy-field"></div>
-          </section>
-
-          <section className="phenomenon-card cosmic">
-            <h2>Aurora Borealis</h2>
-            <p>Nature's light show dancing in the polar skies...</p>
-            <div className="energy-field"></div>
-          </section>
-
-          <section className="phenomenon-card mystical">
-            <h2>Ancient Portals</h2>
-            <p>Doorways to other dimensions scattered across Earth...</p>
-            <div className="energy-field"></div>
-          </section>
-
-          <section className="phenomenon-card ethereal">
-            <h2>Time Anomalies</h2>
-            <p>Mysterious temporal shifts defying our understanding...</p>
-            <div className="energy-field"></div>
-          </section>
-        </main>
-
-        <div className="quote-banner bottom">
-          <p>"Where science ends, magic begins"</p>
-          <p>"The universe whispers its secrets to those who dare to listen"</p>
-        </div>
-      </div>
+      <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <main className="App-main">
+        {renderPage()}
+      </main>
+      <Footer />
     </div>
   );
 }

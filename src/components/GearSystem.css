@@ -1,0 +1,107 @@
+.gear-system {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+  height: 200px;
+  z-index: 1000;
+}
+
+.gear {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #2c3e50, #3498db);
+  box-shadow: 
+    0 0 20px rgba(52, 152, 219, 0.5),
+    inset 0 0 30px rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.gear::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  height: 20%;
+  background: #2c3e50;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.gear::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 15deg,
+    rgba(52, 152, 219, 0.8) 15deg,
+    rgba(52, 152, 219, 0.8) 25deg
+  );
+  border-radius: 50%;
+  z-index: -1;
+  animation: sparkle 3s linear infinite;
+}
+
+.driving {
+  width: 80px;
+  height: 80px;
+  top: 0;
+  left: 0;
+  animation: rotate 4s linear infinite;
+}
+
+.driven {
+  width: 100px;
+  height: 100px;
+  top: 60px;
+  left: 60px;
+  animation: rotate-reverse 5s linear infinite;
+}
+
+.driven-small {
+  width: 60px;
+  height: 60px;
+  top: 120px;
+  left: 20px;
+  animation: rotate 3s linear infinite;
+}
+
+.gear-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(52, 152, 219, 0.1) 0%, transparent 10%),
+    radial-gradient(circle at 70% 70%, rgba(52, 152, 219, 0.1) 0%, transparent 10%);
+  filter: blur(1px);
+  animation: particle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes particle-pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.5; }
+}

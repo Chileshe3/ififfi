@@ -1,0 +1,62 @@
+.privacy-page {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.scroll-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(147, 112, 219, 0.3);
+  border-radius: 15px;
+  position: relative;
+}
+
+.scroll-content {
+  position: relative;
+  z-index: 1;
+}
+
+.privacy-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.privacy-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(147, 112, 219, 0.2);
+}
+
+.privacy-section h2 {
+  color: #9370db;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
+}
+
+.privacy-section p {
+  color: #fff;
+  line-height: 1.6;
+}
+
+.magical-seal {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at center,
+    rgba(147, 112, 219, 0.2) 0%,
+    transparent 70%);
+  border-radius: 50%;
+  animation: sealPulse 3s infinite;
+}
+
+@keyframes sealPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
