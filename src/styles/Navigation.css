@@ -9,8 +9,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 9999;
+  z-index: 1000;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.navigation.hide {
+  transform: translateY(-100%);
+}
+
+/* Add this if you want to show navigation when hovering near top of screen */
+.navigation.hide:hover {
+  transform: translateY(0);
 }
 
 .nav-logo {

@@ -1,9 +1,12 @@
 import React from 'react';
-import './Navigation.css';
+import useScrollDirection from '../hooks/useScrollDirection';
+import '../styles/Navigation.css';
 
 const Navigation = ({ currentPage, setCurrentPage }) => {
+  const scrollDirection = useScrollDirection();
+
   return (
-    <nav className="nav-bar">
+    <nav className={`nav-bar ${scrollDirection === 'down' ? 'hide' : ''}`}>
       <div className="nav-logo">Mystical Realms</div>
       <div className="nav-links">
         <button 
