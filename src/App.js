@@ -3,6 +3,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
 const Home = lazy(() => import('./components/Home'));
@@ -13,52 +14,17 @@ const Mysteries = lazy(() => import('./components/Mysteries'));
 const Sitemap = lazy(() => import('./components/Sitemap'));
 const Privacy = lazy(() => import('./components/Privacy'));
 const Terms = lazy(() => import('./components/Terms'));
+const Story = lazy(() => import('./components/stories/Story'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState('home');
-  const [isPageTransitioning, setIsPageTransitioning] = useState(false);
 
   useEffect(() => {
-    // Simulate initial loading
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
-
-  const renderPage = () => {
-    const components = {
-      home: Home,
-      about: About,
-      phenomena: Phenomena,
-      artifacts: Artifacts,
-      mysteries: Mysteries,
-      sitemap: Sitemap,
-      privacy: Privacy,
-      terms: Terms
-    };
-
-    const Component = components[currentPage] || Home;
-
-    return (
-      <div className={`page-container ${isPageTransitioning ? 'fade-out' : 'fade-in'}`}>
-        <ErrorBoundary>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Component />
-          </Suspense>
-        </ErrorBoundary>
-      </div>
-    );
-  };
-
-  const handlePageChange = (newPage) => {
-    setIsPageTransitioning(true);
-    setTimeout(() => {
-      setCurrentPage(newPage);
-      setIsPageTransitioning(false);
-    }, 300);
-  };
 
   return (
     <div className="App">
@@ -66,9 +32,23 @@ function App() {
         <LoadingSpinner />
       ) : (
         <>
-          <Navigation currentPage={currentPage} setCurrentPage={handlePageChange} />
+          <Navigation />
           <main className="App-main">
-            {renderPage()}
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingSpinner />}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/story/:id" element={<Story />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/phenomena" element={<Phenomena />} />
+                  <Route path="/artifacts" element={<Artifacts />} />
+                  <Route path="/mysteries" element={<Mysteries />} />
+                  <Route path="/sitemap" element={<Sitemap />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/terms" element={<Terms />} />
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
           </main>
           <Footer />
         </>

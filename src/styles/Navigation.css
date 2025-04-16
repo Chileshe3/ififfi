@@ -78,6 +78,78 @@
   color: #7c3aed;
 }
 
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(15, 12, 41, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav-logo {
+  color: #61dafb;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 10000;
+}
+
+.hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #61dafb;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: #61dafb;
+  transition: all 0.3s ease;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  bottom: -8px;
+}
+
+.hamburger.open {
+  transform: rotate(45deg);
+}
+
+.hamburger.open::before {
+  transform: rotate(90deg);
+  top: 0;
+}
+
+.hamburger.open::after {
+  transform: rotate(90deg);
+  bottom: 0;
+}
+
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -114,6 +186,46 @@
 
   .nav-open .hamburger span:last-child {
     transform: rotate(-45deg);
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 50%;
+    height: 100vh;
+    background: rgba(15, 12, 41, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 80px 2rem 2rem;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-links button {
+    width: 100%;
+    text-align: left;
+    padding: 0.8rem;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(97, 218, 251, 0.2);
+  }
+
+  .nav-links button:hover {
+    background: rgba(97, 218, 251, 0.1);
+    color: #61dafb;
   }
 }
 

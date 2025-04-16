@@ -19,159 +19,51 @@
   }
 }
 
-.phenomenon-card {
-  position: relative;
-  padding: 2.5rem;
-  border-radius: 20px;
-  color: white;
-  overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transform-style: preserve-3d;
-  perspective: 1000px;
+.mystery-list {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.phenomenon-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent 360deg
-  );
-  animation: rotateGradient 4s linear infinite;
-  z-index: -1;
-}
-
-.phenomenon-card:hover {
-  transform: translateY(-15px) rotateX(10deg);
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.5),
-    0 0 25px rgba(255, 255, 255, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
-}
-
-.phenomenon-card h2 {
-  font-size: 2rem;
+.mystery-item {
+  padding: 2rem;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-  position: relative;
-  z-index: 2;
-  background: linear-gradient(to right, #fff, #a5f3fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  color: #fff;
 }
 
-.phenomenon-card p {
-  font-size: 1.2rem;
+.mystery-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(10px);
+  padding-left: 2.5rem;
+}
+
+.mystery-item h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #61dafb;
+}
+
+.mystery-item p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin: 0;
   line-height: 1.6;
-  position: relative;
-  z-index: 2;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.energy-field {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.15) 100%);
-  opacity: 0;
-  transition: all 0.5s ease;
-  filter: blur(5px);
-}
-
-.phenomenon-card:hover .energy-field {
-  opacity: 1;
-  animation: energyPulse 2s infinite;
-}
-
-@keyframes energyPulse {
-  0% { transform: scale(1); opacity: 0.2; filter: hue-rotate(0deg); }
-  50% { transform: scale(1.1); opacity: 0.4; filter: hue-rotate(180deg); }
-  100% { transform: scale(1); opacity: 0.2; filter: hue-rotate(360deg); }
-}
-
-@keyframes rotateGradient {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.ancient { 
-  background: linear-gradient(45deg, #8B4513, #D2691E);
-  box-shadow: 0 0 30px rgba(139, 69, 19, 0.5);
-}
-
-.enigmatic { 
-  background: linear-gradient(45deg, #4B0082, #8A2BE2);
-  box-shadow: 0 0 30px rgba(75, 0, 130, 0.5);
-}
-
-.paranormal { 
-  background: linear-gradient(45deg, #006400, #32CD32);
-  box-shadow: 0 0 30px rgba(0, 100, 0, 0.5);
-}
-
-.celestial { 
-  background: linear-gradient(45deg, #1E90FF, #00BFFF);
-  box-shadow: 0 0 30px rgba(30, 144, 255, 0.5);
-}
-
-.legendary { 
-  background: linear-gradient(45deg, #FFD700, #FFA500);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-}
-
-.mythical { 
-  background: linear-gradient(45deg, #8B008B, #FF00FF);
-  box-shadow: 0 0 30px rgba(139, 0, 139, 0.5);
-}
-
-.arcane { 
-  background: linear-gradient(45deg, #483D8B, #6A5ACD);
-  box-shadow: 0 0 30px rgba(72, 61, 139, 0.5);
-}
-
-.mystifying { 
-  background: linear-gradient(45deg, #2F4F4F, #5F9EA0);
-  box-shadow: 0 0 30px rgba(47, 79, 79, 0.5);
-}
-
-.spiritual { background: linear-gradient(45deg, #9370DB, #BA55D3); }
-.supernatural { background: linear-gradient(45deg, #DC143C, #FF4500); }
-.mystical { background: linear-gradient(45deg, #20B2AA, #48D1CC); }
-.ethereal { background: linear-gradient(45deg, #DDA0DD, #EE82EE); }
-
-.phenomenon-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 0%, 
-    rgba(255, 255, 255, 0.2), 
-    rgba(255, 255, 255, 0) 70%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.phenomenon-card:hover::after {
-  opacity: 1;
-}
-
-@media (hover: hover) {
-  .phenomenon-card:hover {
-    transform: 
-      translateY(-20px) 
-      rotateX(10deg) 
-      rotateY(5deg) 
-      scale(1.05);
+@media (max-width: 768px) {
+  .mystery-item {
+    padding: 1.5rem 1rem;
+  }
+  
+  .mystery-item h2 {
+    font-size: 1.5rem;
+  }
+  
+  .mystery-item p {
+    font-size: 1rem;
   }
 }
