@@ -1,60 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useScrollDirection from '../hooks/useScrollDirection';
 import '../styles/Navigation.css';
 
 const Navigation = ({ currentPage, setCurrentPage }) => {
-  const scrollDirection = useScrollDirection();
+  const [isOpen, setIsOpen] = useState(false);
+  const isHidden = useScrollDirection();
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleNavClick = (page) => {
+    setCurrentPage(page);
+    setIsOpen(false);
+  };
 
   return (
-    <nav className={`nav-bar ${scrollDirection === 'down' ? 'hide' : ''}`}>
+    <nav className={`navigation ${isOpen ? 'nav-open' : ''} ${isHidden ? 'nav-hidden' : ''}`}>
       <div className="nav-logo">Mystical Realms</div>
-      <div className="nav-links">
+      <button className="hamburger" onClick={toggleMenu}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div className={`nav-links ${isOpen ? 'show' : ''}`}>
         <button 
           className={`nav-button ${currentPage === 'home' ? 'active' : ''}`}
-          onClick={() => setCurrentPage('home')}
+          onClick={() => handleNavClick('home')}
         >
           Home
         </button>
         <button 
           className={`nav-button ${currentPage === 'phenomena' ? 'active' : ''}`}
-          onClick={() => setCurrentPage('phenomena')}
+          onClick={() => handleNavClick('phenomena')}
         >
           Phenomena
         </button>
         <button 
           className={`nav-button ${currentPage === 'artifacts' ? 'active' : ''}`}
-          onClick={() => setCurrentPage('artifacts')}
+          onClick={() => handleNavClick('artifacts')}
         >
           Artifacts
         </button>
         <button 
           className={`nav-button ${currentPage === 'mysteries' ? 'active' : ''}`}
-          onClick={() => setCurrentPage('mysteries')}
+          onClick={() => handleNavClick('mysteries')}
         >
           Mysteries
         </button>
         <button 
           className={`nav-button ${currentPage === 'about' ? 'active' : ''}`}
-          onClick={() => setCurrentPage('about')}
+          onClick={() => handleNavClick('about')}
         >
           About
         </button>
         <div className="nav-secondary">
           <button 
             className={`nav-button ${currentPage === 'sitemap' ? 'active' : ''}`}
-            onClick={() => setCurrentPage('sitemap')}
+            onClick={() => handleNavClick('sitemap')}
           >
             Sitemap
           </button>
           <button 
             className={`nav-button ${currentPage === 'privacy' ? 'active' : ''}`}
-            onClick={() => setCurrentPage('privacy')}
+            onClick={() => handleNavClick('privacy')}
           >
             Privacy
           </button>
           <button 
             className={`nav-button ${currentPage === 'terms' ? 'active' : ''}`}
-            onClick={() => setCurrentPage('terms')}
+            onClick={() => handleNavClick('terms')}
           >
             Terms
           </button>

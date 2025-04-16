@@ -3,7 +3,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './App.css';
 
 const Home = lazy(() => import('./components/Home'));
@@ -18,6 +17,7 @@ const Terms = lazy(() => import('./components/Terms'));
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState('home');
+  const [isPageTransitioning, setIsPageTransitioning] = useState(false);
 
   useEffect(() => {
     // Simulate initial loading
@@ -42,21 +42,22 @@ function App() {
     const Component = components[currentPage] || Home;
 
     return (
-      <TransitionGroup>
-        <CSSTransition
-          key={currentPage}
-          timeout={300}
-          classNames="page"
-          unmountOnExit
-        >
-          <ErrorBoundary>
-            <Suspense fallback={<LoadingSpinner />}>
-              <Component />
-            </Suspense>
-          </ErrorBoundary>
-        </CSSTransition>
-      </TransitionGroup>
+      <div className={`page-container ${isPageTransitioning ? 'fade-out' : 'fade-in'}`}>
+        <ErrorBoundary>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Component />
+          </Suspense>
+        </ErrorBoundary>
+      </div>
     );
+  };
+
+  const handlePageChange = (newPage) => {
+    setIsPageTransitioning(true);
+    setTimeout(() => {
+      setCurrentPage(newPage);
+      setIsPageTransitioning(false);
+    }, 300);
   };
 
   return (
@@ -65,7 +66,7 @@ function App() {
         <LoadingSpinner />
       ) : (
         <>
-          <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <Navigation currentPage={currentPage} setCurrentPage={handlePageChange} />
           <main className="App-main">
             {renderPage()}
           </main>

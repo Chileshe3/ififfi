@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   min-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .App-header {
@@ -449,6 +451,13 @@
   position: relative;
   min-height: 100vh;
   animation: fadeIn 0.5s ease-in-out;
+  padding-top: 80px; /* Adjust based on your navigation height */
+}
+
+@media (max-width: 768px) {
+  .App-main {
+    padding-top: 60px;
+  }
 }
 
 @keyframes fadeIn {
@@ -475,4 +484,18 @@
     justify-content: center;
     width: 100%;
   }
+}
+
+.page-container {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  will-change: transform, opacity;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
 }

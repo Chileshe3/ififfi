@@ -1,30 +1,37 @@
 import { useState, useEffect } from 'react';
 
-function useScrollDirection() {
-  const [scrollDirection, setScrollDirection] = useState('up');
-  const [prevScroll, setPrevScroll] = useState(0);
+const useScrollDirection = () => {
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll <= 0) {
-        setScrollDirection('up');
-        return;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const scrollingDown = currentScrollY > lastScrollY;
+          const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+          
+          // Reduced threshold for smoother detection
+          if (scrollDelta > 5) {
+            setIsHidden(scrollingDown);
+            setLastScrollY(currentScrollY);
+          }
+          
+          ticking = false;
+        });
+        
+        ticking = true;
       }
-      
-      if (Math.abs(currentScroll - prevScroll) < 10) {
-        return;
-      }
-      
-      setScrollDirection(currentScroll > prevScroll ? 'down' : 'up');
-      setPrevScroll(currentScroll);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScroll]);
+  }, [lastScrollY]);
 
-  return scrollDirection;
-}
+  return isHidden;
+};
 
 export default useScrollDirection;
