@@ -15,6 +15,9 @@ const Sitemap = lazy(() => import('./components/Sitemap'));
 const Privacy = lazy(() => import('./components/Privacy'));
 const Terms = lazy(() => import('./components/Terms'));
 const Story = lazy(() => import('./components/stories/Story'));
+const DimensionalRifts = lazy(() => import('./components/stories/DimensionalRifts'));
+const AncientMysteries = lazy(() => import('./components/stories/AncientMysteries'));
+// ...more story imports...
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +42,9 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/story/:id" element={<Story />} />
+                  <Route path="/story/dimensional-rifts" element={<DimensionalRifts />} />
+                  <Route path="/story/ancient-mysteries" element={<AncientMysteries />} />
+                  {/* Add routes for other stories */}
                   <Route path="/about" element={<About />} />
                   <Route path="/phenomena" element={<Phenomena />} />
                   <Route path="/artifacts" element={<Artifacts />} />

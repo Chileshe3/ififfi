@@ -48,6 +48,11 @@ function Home() {
               <h2>Energy Vortexes</h2>
               <p>Powerful locations where reality seems to bend...</p>
             </li>
+            <li className="mystery-item" onClick={() => handleStoryClick('suns-stars')}>
+              <h2>Suns and Stars</h2>
+              <p>To the edge of the universe and back, endure and survive...</p>
+              <p>Introduced to something called "Not being able to breathe</p>
+            </li>
             <li className="mystery-item" onClick={() => handleStoryClick('conscious-evolution')}>
               <h2>Conscious Evolution</h2>
               <p>Unexplained leaps in human consciousness and ability...</p>
