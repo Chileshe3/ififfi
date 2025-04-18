@@ -1,26 +1,284 @@
 .artifacts-page {
   min-height: 100vh;
   padding-top: 80px;
+  background-color: #080812;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Cinzel', serif;
 }
 
+/* Background and atmospheric effects */
+.mysterious-bg {
+  position: relative;
+  z-index: 1;
+}
+
+.mysterious-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(30, 15, 50, 0.6) 0%, rgba(5, 5, 15, 0.9) 100%);
+  z-index: -1;
+}
+
+.ancient-symbols-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50 L60 40 L50 30 L40 40 Z' stroke='rgba(255,215,0,0.03)' fill='none'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='rgba(255,215,0,0.02)' fill='none'/%3E%3Cpath d='M30 70 L70 70 L70 30 L30 30 Z' stroke='rgba(255,215,0,0.01)' fill='none'/%3E%3C/svg%3E");
+  opacity: 0.8;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.constellation-map {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.star-point {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 215, 0, 0.4);
+  animation: twinkle 4s infinite alternate;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+.mystical-energy-orb {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(255, 215, 0, 0.1) 0%,
+    rgba(255, 100, 0, 0.05) 40%,
+    rgba(100, 0, 100, 0) 70%);
+  filter: blur(30px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  transition: all 0.1s ease;
+  mix-blend-mode: screen;
+}
+
+.energy-line-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+.energy-line {
+  position: absolute;
+  background: linear-gradient(90deg, 
+    rgba(255, 215, 0, 0) 0%,
+    rgba(255, 215, 0, 0.5) 50%,
+    rgba(255, 215, 0, 0) 100%);
+  height: 1px;
+  width: 100%;
+  opacity: 0.3;
+}
+
+.horizontal {
+  top: 50%;
+  left: 0;
+  animation: pulse-horizontal 15s infinite;
+}
+
+.vertical {
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(180deg, 
+    rgba(255, 215, 0, 0) 0%,
+    rgba(255, 215, 0, 0.5) 50%,
+    rgba(255, 215, 0, 0) 100%);
+  animation: pulse-vertical 17s infinite;
+}
+
+.diagonal-1 {
+  top: 0;
+  left: 0;
+  width: 141.4%; /* 100% * sqrt(2) */
+  transform: rotate(45deg) translateY(-50%);
+  transform-origin: top left;
+  animation: pulse-diagonal 19s infinite alternate;
+}
+
+.diagonal-2 {
+  top: 0;
+  right: 0;
+  width: 141.4%; /* 100% * sqrt(2) */
+  transform: rotate(-45deg) translateY(-50%);
+  transform-origin: top right;
+  animation: pulse-diagonal 23s infinite alternate-reverse;
+}
+
+@keyframes pulse-horizontal {
+  0%, 100% { transform: scaleX(1); opacity: 0.3; }
+  50% { transform: scaleX(1.05); opacity: 0.5; }
+}
+
+@keyframes pulse-vertical {
+  0%, 100% { transform: scaleY(1); opacity: 0.3; }
+  50% { transform: scaleY(1.05); opacity: 0.5; }
+}
+
+@keyframes pulse-diagonal {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 0.1; }
+}
+
+.mysterious-portal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, 
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(30, 10, 40, 0.7) 30%,
+    rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  z-index: -2;
+  animation: portal-pulse 20s infinite alternate;
+  opacity: 0.5;
+}
+
+@keyframes portal-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.8); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* Page elements */
+.page-title {
+  color: #ffd700;
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.3);
+  letter-spacing: 4px;
+  font-weight: 600;
+  position: relative;
+  animation: title-glow 4s infinite alternate;
+}
+
+.page-subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  font-style: italic;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes title-glow {
+  0%, 100% { text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.3); }
+  50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 40px rgba(255, 215, 0, 0.5); }
+}
+
+.filters-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.filter-btn {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: rgba(255, 215, 0, 0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Artifact grid and items */
 .artifacts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   padding: 2rem;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .artifact-item {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(10, 10, 20, 0.7);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 215, 0, 0.2);
   border-radius: 15px;
   padding: 2rem;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(30px) rotate(0deg);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.artifact-item.revealed {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+.artifact-item.expanded {
+  grid-column: span 2;
+  z-index: 10;
+  transform: scale(1.05);
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+}
+
+.artifact-content {
+  position: relative;
+  z-index: 2;
 }
 
 .artifact-item::before {
@@ -30,41 +288,63 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, 
+  background: radial-gradient(ellipse at center, 
     rgba(255, 215, 0, 0.1) 0%,
     transparent 70%);
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, transform 10s linear;
+  z-index: 1;
+  transform: rotate(0deg);
+}
+
+.artifact-item:hover::before {
+  opacity: 0.3;
+  animation: rotate 20s linear infinite;
+}
+
+.artifact-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, 
+    rgba(255, 215, 0, 0.2) 0%,
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.artifact-item:hover .artifact-glow {
+  opacity: 0.5;
 }
 
 .artifact-item:hover {
   transform: translateY(-10px) rotate(1deg);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-}
-
-.artifact-item:hover::before {
-  opacity: 1;
-  animation: rotate 10s linear infinite;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.5);
 }
 
 .artifact-icon {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+  animation: float-icon 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+}
+
+@keyframes float-icon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .artifact-item h3 {
   color: #ffd700;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.8rem;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-}
-
-.artifact-item p {
-  color: #fff;
-  line-height: 1.6;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  letter-spacing: 1px;
 }

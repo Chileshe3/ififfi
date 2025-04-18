@@ -1,14 +1,83 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GearSystem from './GearSystem';
 import '../styles/Home.css';
 
 function Home() {
   const navigate = useNavigate();
+  const [activeItem, setActiveItem] = useState(null);
 
   const handleStoryClick = (storyId) => {
     navigate(`/story/${storyId}`);
   };
+
+  const mysteries = [
+    {
+      id: 'ancient-mysteries',
+      title: 'Ancient Mysteries',
+      description: 'Unexplainable artifacts that defy historical understanding...',
+      color: '#61dafb'
+    },
+    {
+      id: 'quantum-anomalies',
+      title: 'Quantum Anomalies',
+      description: 'Phenomena that challenge our understanding of physics...',
+      color: '#9e61fb'
+    },
+    {
+      id: 'dimensional-rifts',
+      title: 'Dimensional Rifts',
+      description: 'Gateways between worlds that appear and vanish...',
+      color: '#fb6161'
+    },
+    {
+      id: 'cosmic-echoes',
+      title: 'Cosmic Echoes',
+      description: 'Strange signals from deep space that defy explanation...',
+      color: '#61fb8d'
+    },
+    {
+      id: 'time-slips',
+      title: 'Time Slips',
+      description: 'Moments where past and present mysteriously intersect...',
+      color: '#fbd261'
+    },
+    {
+      id: 'forbidden-knowledge',
+      title: 'Forbidden Knowledge',
+      description: 'Ancient wisdom that challenges modern understanding...',
+      color: '#fb61d2'
+    },
+    {
+      id: 'energy-vortexes',
+      title: 'Energy Vortexes',
+      description: 'Powerful locations where reality seems to bend...',
+      color: '#61d2fb'
+    },
+    {
+      id: 'suns-stars',
+      title: 'Suns and Stars',
+      description: 'To the edge of the universe and back, endure and survive...',
+      secondaryDescription: 'Introduced to something called "Not being able to breathe"',
+      color: '#fbcf61'
+    },
+    {
+      id: 'conscious-evolution',
+      title: 'Conscious Evolution',
+      description: 'Unexplained leaps in human consciousness and ability...',
+      color: '#61fb61'
+    }
+  ];
+
+  // Add fade-in animation on component mount
+  useEffect(() => {
+    const items = document.querySelectorAll('.mystery-item');
+    items.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add('visible');
+      }, 100 * index);
+    });
+  }, []);
 
   return (
     <div className="home">
@@ -20,43 +89,30 @@ function Home() {
         </div>
         <main className="content">
           <ul className="mystery-list">
-            <li className="mystery-item" onClick={() => handleStoryClick('ancient-mysteries')}>
-              <h2>Ancient Mysteries</h2>
-              <p>Unexplainable artifacts that defy historical understanding...</p>
-            </li>
-            <li className="mystery-item" onClick={() => handleStoryClick('quantum-anomalies')}>
-              <h2>Quantum Anomalies</h2>
-              <p>Phenomena that challenge our understanding of physics...</p>
-            </li>
-            <li className="mystery-item" onClick={() => handleStoryClick('dimensional-rifts')}>
-              <h2>Dimensional Rifts</h2>
-              <p>Gateways between worlds that appear and vanish...</p>
-            </li>
-            <li className="mystery-item" onClick={() => handleStoryClick('cosmic-echoes')}>
-              <h2>Cosmic Echoes</h2>
-              <p>Strange signals from deep space that defy explanation...</p>
-            </li>
-            <li className="mystery-item" onClick={() => handleStoryClick('time-slips')}>
-              <h2>Time Slips</h2>
-              <p>Moments where past and present mysteriously intersect...</p>
-            </li>
-            <li className="mystery-item" onClick={() => handleStoryClick('forbidden-knowledge')}>
-              <h2>Forbidden Knowledge</h2>
-              <p>Ancient wisdom that challenges modern understanding...</p>
-            </li>
-            <li className="mystery-item" onClick={() => handleStoryClick('energy-vortexes')}>
-              <h2>Energy Vortexes</h2>
-              <p>Powerful locations where reality seems to bend...</p>
-            </li>
-            <li className="mystery-item" onClick={() => handleStoryClick('suns-stars')}>
-              <h2>Suns and Stars</h2>
-              <p>To the edge of the universe and back, endure and survive...</p>
-              <p>Introduced to something called "Not being able to breathe</p>
-            </li>
-            <li className="mystery-item" onClick={() => handleStoryClick('conscious-evolution')}>
-              <h2>Conscious Evolution</h2>
-              <p>Unexplained leaps in human consciousness and ability...</p>
-            </li>
+            {mysteries.map((mystery) => (
+              <li 
+                key={mystery.id}
+                className="mystery-item" 
+                onClick={() => handleStoryClick(mystery.id)}
+                onMouseEnter={() => setActiveItem(mystery.id)}
+                onMouseLeave={() => setActiveItem(null)}
+                style={{ 
+                  '--accent-color': mystery.color,
+                  opacity: activeItem && activeItem !== mystery.id ? 0.7 : 1
+                }}
+              >
+                <div className="mystery-icon">
+                  <span className="story-icon">✧</span>
+                </div>
+                <div className="mystery-content">
+                  <h2>{mystery.title}</h2>
+                  <p>{mystery.description}</p>
+                  {mystery.secondaryDescription && (
+                    <p className="secondary-description">{mystery.secondaryDescription}</p>
+                  )}
+                </div>
+              </li>
+            ))}
           </ul>
         </main>
       </div>

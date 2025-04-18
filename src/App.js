@@ -10,7 +10,6 @@ const Home = lazy(() => import('./components/Home'));
 const About = lazy(() => import('./components/About'));
 const Phenomena = lazy(() => import('./components/Phenomena'));
 const Artifacts = lazy(() => import('./components/Artifacts'));
-const Mysteries = lazy(() => import('./components/Mysteries'));
 const Sitemap = lazy(() => import('./components/Sitemap'));
 const Privacy = lazy(() => import('./components/Privacy'));
 const Terms = lazy(() => import('./components/Terms'));
@@ -48,7 +47,6 @@ function App() {
                   <Route path="/about" element={<About />} />
                   <Route path="/phenomena" element={<Phenomena />} />
                   <Route path="/artifacts" element={<Artifacts />} />
-                  <Route path="/mysteries" element={<Mysteries />} />
                   <Route path="/sitemap" element={<Sitemap />} />
                   <Route path="/privacy" element={<Privacy />} />
                   <Route path="/terms" element={<Terms />} />

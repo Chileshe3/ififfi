@@ -24,7 +24,7 @@ const Navigation = () => {
 
   return (
     <nav className={`navigation ${isOpen ? 'nav-open' : ''} ${isHidden ? 'nav-hidden' : ''}`}>
-      <div className="nav-logo" onClick={() => handleNavClick('/')}>Mystical Realms</div>
+      <div className="nav-logo" onClick={() => handleNavClick('/')}><i>Suns & StarsS</i></div>
       <button className="hamburger" onClick={toggleMenu}>
         <span></span>
         <span></span>
@@ -49,12 +49,7 @@ const Navigation = () => {
         >
           Artifacts
         </button>
-        <button 
-          className={`nav-button ${isActive('/mysteries') ? 'active' : ''}`}
-          onClick={() => handleNavClick('/mysteries')}
-        >
-          Mysteries
-        </button>
+       
         <button 
           className={`nav-button ${isActive('/about') ? 'active' : ''}`}
           onClick={() => handleNavClick('/about')}
