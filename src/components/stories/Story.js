@@ -7,7 +7,6 @@ const Story = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   
-  // Simulate loading a story
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -19,7 +18,7 @@ const Story = () => {
   return (
     <div className="story-container">
       <button className="back-button" onClick={() => navigate('/')}>
-        <span aria-hidden="true">←</span> Back
+        <span aria-hidden="true">←</span> 
       </button>
       
       <h1 className="story-title">{loading ? `Loading story: ${id}...` : `Story: ${id}`}</h1>
@@ -38,9 +37,7 @@ const Story = () => {
               <h2>Chapter One</h2>
               <div className="section-content">
                 <p>The story begins in a world not unlike our own, yet distinctly different in ways that challenge perception...</p>
-                <div className="image-container">
-                  <img src={`/api/placeholder/400/300`} alt="Story chapter visual" />
-                </div>
+          
               </div>
             </section>
             
@@ -48,9 +45,7 @@ const Story = () => {
               <h2>Chapter Two</h2>
               <div className="section-content">
                 <p>As our protagonist ventures further, the boundaries between reality and fiction begin to blur...</p>
-                <div className="image-container">
-                  <img src={`/api/placeholder/400/300`} alt="Story progression" />
-                </div>
+                
               </div>
             </section>
           </>
@@ -58,7 +53,7 @@ const Story = () => {
       </div>
       
       {!loading && (
-        <div className="story-conclusion">
+        <div>
           <p>Every story has a beginning, middle, and end—but not necessarily in that order.</p>
         </div>
       )}

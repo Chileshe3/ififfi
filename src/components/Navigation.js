@@ -24,7 +24,7 @@ const Navigation = () => {
 
   return (
     <nav className={`navigation ${isOpen ? 'nav-open' : ''} ${isHidden ? 'nav-hidden' : ''}`}>
-      <div className="nav-logo" onClick={() => handleNavClick('/')}><i>Suns & StarsS</i></div>
+      <div className="nav-logo" onClick={() => handleNavClick('/')}><i>Fact Nova</i></div>
       <button className="hamburger" onClick={toggleMenu}>
         <span></span>
         <span></span>
@@ -56,6 +56,13 @@ const Navigation = () => {
         >
           About
         </button>
+        <button 
+          className={`nav-button ${isActive('/about') ? 'active' : ''}`}
+          onClick={() => handleNavClick('/about')}
+        >
+          Chileshe
+        </button>
+       
         <div className="nav-secondary">
           <button 
             className={`nav-button ${isActive('/sitemap') ? 'active' : ''}`}

@@ -9,7 +9,7 @@ function LoadingSpinner() {
         <div className="spinner-ring"></div>
         <div className="spinner-ring"></div>
       </div>
-      <p className="loading-text">Exploring mysteries...</p>
+      <p className="loading-text">FactNova...</p>
     </div>
   );
 }

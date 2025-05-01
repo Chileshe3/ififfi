@@ -16,7 +16,25 @@
   font-size: 2rem;
   color: #00ffff;
   text-shadow: 0 0 10px #00ffff;
-  animation: float 3s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
+}
+.symbol1 {
+  font-size: 2rem;
+  color: #9e61fb;
+  text-shadow: 0 0 10px #9e61fb;
+  animation: float 5s ease-in-out infinite;
+}
+.symbol2 {
+  font-size: 2rem;
+  color: #61fb8d;
+  text-shadow: 0 0 10px #61fb8d;
+  animation: float 5s ease-in-out infinite;
+}
+.symbol3 {
+  font-size: 2rem;
+  color: #fb6161;
+  text-shadow: 0 0 10px #fb6161;
+  animation: float 5s ease-in-out infinite;
 }
 
 .symbol:nth-child(2) { animation-delay: 0.5s; }

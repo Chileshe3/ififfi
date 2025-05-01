@@ -7,10 +7,10 @@ const Footer = () => {
   return (
     <footer className="mysterious-footer">
       <div className="mystical-symbols">
-        <span className="symbol">☥</span>
-        <span className="symbol">⚝</span>
         <span className="symbol">☯</span>
-        <span className="symbol">⚡</span>
+        <span className="symbol1">☯</span>
+        <span className="symbol2">☯</span>
+        <span className="symbol3">☯</span>
       </div>
       
       <div className="footer-content">

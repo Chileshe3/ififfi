@@ -14,8 +14,8 @@ An immersive web experience dedicated to documenting and exploring mysterious ph
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/mystical-realms.git
-cd mystical-realms
+git clone https://github.com/chileshe3/ififfi.git
+cd ififfi
 ```
 
 2. **Install dependencies**

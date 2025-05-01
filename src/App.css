@@ -441,7 +441,6 @@
   to { transform: rotate(360deg); }
 }
 
-/* Make sure elements don't overflow */
 * {
   box-sizing: border-box;
   max-width: 100%;
@@ -451,7 +450,7 @@
   position: relative;
   min-height: 100vh;
   animation: fadeIn 0.5s ease-in-out;
-  padding-top: 80px; /* Adjust based on your navigation height */
+  padding-top: 80px; 
 }
 
 @media (max-width: 768px) {

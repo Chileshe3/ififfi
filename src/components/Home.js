@@ -13,9 +13,9 @@ function Home() {
 
   const mysteries = [
     {
-      id: 'ancient-mysteries',
-      title: 'Ancient Mysteries',
-      description: 'Unexplainable artifacts that defy historical understanding...',
+      id: 'computer-limits',
+      title: 'Will computers reach their Limits?',
+      description: 'Deep dive into the potential of computers',
       color: '#61dafb'
     },
     {
