@@ -54,6 +54,7 @@ body {
 .story-header {
   padding: clamp(3rem, 8vh, 6rem) 0 clamp(2rem, 5vh, 4rem);
   text-align: left;
+  width: 100%;
 }
 
 .story-title {
@@ -86,11 +87,10 @@ body {
 .story-subtitle {
   font-size: clamp(1rem, 1.2vw, 1.25rem);
   color: var(--text-secondary);
-  max-width: 700px;
-  margin: 0 0 3rem;
+  max-width: 100%;
+  margin: 0;
   font-weight: 400;
   text-align: left;
-  align-items: left;
 }
 
 .story-section {
@@ -109,6 +109,7 @@ body {
   opacity: 0;
   transform: translateY(30px);
   width: 100%;
+  margin: 0;
 }
 
 .story-section h2 {
@@ -145,6 +146,7 @@ body {
   gap: clamp(1.5rem, 3vw, 2.5rem);
   align-items: flex-start;
   text-align: left;
+  width: 100%;
 }
 
 .section-content p {
@@ -154,6 +156,7 @@ body {
   margin: 0 0 1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   text-align: left;
+  width: 100%;
 }
 
 .section-content p:last-child {
@@ -166,6 +169,7 @@ body {
   padding: 0;
   margin: 1rem 0 1.5rem;
   text-align: left;
+  width: 100%;
 }
 
 .phenomenon-list li {
@@ -329,22 +333,24 @@ body {
   transform: translateY(0);
 }
 
-
 /* Media Queries */
 @media (max-width: 768px) {
   .story-container {
     padding: 0;
+    width: 100%;
   }
   
   .story-section {
     border-radius: 0;
-    padding: 1rem;
+    padding: 1.25rem;
     margin: 0;
+    width: 100%;
   }
   
   .section-content {
     grid-template-columns: 1fr;
     gap: 1rem;
+    width: 100%;
   }
   
   .back-button {
@@ -352,7 +358,17 @@ body {
   }
   
   .story-header {
-    padding: 1rem;
+    padding: 2rem 1.25rem 1rem;
+    width: 100%;
+  }
+  
+  .story-p {
+    text-align: left;
+    font-size: 18px;
+    color: rgb(233, 239, 239);
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -366,20 +382,23 @@ body {
 
 @media (min-width: 1200px) {
   .story-container {
-    padding-left: clamp(2rem, 6vw, 6rem);
-    padding-right: clamp(2rem, 6vw, 6rem);
+    width: 100%;
+    padding: 0;
   }
   
   .story-sections {
     gap: 2.5rem;
+    width: 100%;
   }
 }
- .story-p {
+
+.story-p {
   text-align: left;
   font-size: 18px;
   color: rgb(233, 239, 239);
-  
-  
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* Print Styles */
