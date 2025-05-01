@@ -93,18 +93,9 @@ body {
   align-items: left;
 }
 
-.story-sections {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
-  gap: clamp(2rem, 3vw, 2.5rem);
-  width: 100%;
-  padding-bottom: clamp(3rem, 8vh, 6rem);
-  
-}
-
 .story-section {
   background: var(--bg-section);
-  border: 1px solid var(--border-color);
+ 
   border-radius: var(--border-radius);
   padding: clamp(2rem, 3vw, 2.75rem);
   transition: var(--transition-standard);
