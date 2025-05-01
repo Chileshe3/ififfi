@@ -16,13 +16,15 @@ function Home() {
       id: 'computer-limits',
       title: 'Will computers reach their Limits?',
       description: 'Deep dive into the potential of computers',
-      color: '#61dafb'
+      color: '#61dafb',
+      image: require('./images/istockphoto-1468266144-1024x1024.jpg')
     },
     {
       id: 'quantum-anomalies',
       title: 'Quantum Anomalies',
       description: 'Phenomena that challenge our understanding of physics...',
-      color: '#9e61fb'
+      color: '#9e61fb',
+      image: '/images/quantum-anomalies.jpg'
     },
     {
       id: 'dimensional-rifts',
@@ -101,14 +103,18 @@ function Home() {
                   opacity: activeItem && activeItem !== mystery.id ? 0.7 : 1
                 }}
               >
-                <div className="mystery-icon">
-                  <span className="story-icon">✧</span>
-                </div>
                 <div className="mystery-content">
-                  <h2>{mystery.title}</h2>
-                  <p>{mystery.description}</p>
-                  {mystery.secondaryDescription && (
-                    <p className="secondary-description">{mystery.secondaryDescription}</p>
+                  <div className="mystery-text">
+                    <h2>{mystery.title}</h2>
+                    <p>{mystery.description}</p>
+                    {mystery.secondaryDescription && (
+                      <p className="secondary-description">{mystery.secondaryDescription}</p>
+                    )}
+                  </div>
+                  {mystery.image && (
+                    <div className="mystery-image">
+                      <img src={mystery.image} alt={mystery.title} />
+                    </div>
                   )}
                 </div>
               </li>
