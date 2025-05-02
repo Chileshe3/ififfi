@@ -1,125 +1,185 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import GearSystem from './GearSystem';
 import '../styles/Home.css';
+import { MoreHorizontal } from 'lucide-react';
+
+// Memoized image component for performance
+const MysteryImage = memo(({ image, title }) => (
+  <div className="mystery-image">
+    {image && <img src={image} alt={title} loading="lazy" />}
+  </div>
+));
+
+// Extract mystery item to its own component for better code organization
+const MysteryItem = memo(({ mystery, isActive, onClick, onMouseEnter, onMouseLeave }) => (
+  <motion.li 
+    className={`mystery-item ${isActive ? 'active' : ''}`}
+    onClick={onClick}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.4 }}
+    style={{ 
+      '--accent-color': mystery.color,
+      opacity: isActive === false ? 0.7 : 1
+    }}
+  >
+    <div className="mystery-content">
+      <div className="mystery-text">
+        <h2>{mystery.title}</h2>
+        <p className="primary-description">{mystery.description}</p>
+        {mystery.secondaryDescription && (
+          <p className="secondary-description">{mystery.secondaryDescription}</p>
+        )}
+        <motion.div 
+          className="mystery-more"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isActive ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <button className="glass-button">
+            <span>Explore</span>
+            <MoreHorizontal size={16} />
+          </button>
+        </motion.div>
+      </div>
+      {mystery.image && <MysteryImage image={mystery.image} title={mystery.title} />}
+    </div>
+  </motion.li>
+));
+
+const MYSTERIES_DATA = [
+  {
+    id: 'computer-limits',
+    title: 'Will Computers Reach Their Limits?',
+    description: 'Exploring the boundaries of computational power and the future of technology',
+    color: '#61dafb',
+    image: require('./images/istockphoto-1468266144-1024x1024.jpg')
+  },
+  {
+    id: 'quantum-anomalies',
+    title: 'Quantum Anomalies',
+    description: 'Phenomena that challenge our fundamental understanding of quantum physics',
+    color: '#9e61fb',
+    image: '/images/quantum-anomalies.jpg'
+  },
+  {
+    id: 'dimensional-rifts',
+    title: 'Dimensional Rifts',
+    description: 'Theoretical gateways between parallel worlds that appear and vanish inexplicably',
+    color: '#fb6161'
+  },
+  {
+    id: 'cosmic-echoes',
+    title: 'Cosmic Echoes',
+    description: 'Unexplained signals from deep space that defy conventional astronomical analysis',
+    color: '#61fb8d'
+  },
+  {
+    id: 'time-slips',
+    title: 'Time Slips',
+    description: 'Documented moments where past and present mysteriously intersect in our reality',
+    color: '#fbd261'
+  },
+  {
+    id: 'forbidden-knowledge',
+    title: 'Forbidden Knowledge',
+    description: 'Ancient wisdom and scientific discoveries that challenge modern understanding',
+    color: '#fb61d2'
+  },
+  {
+    id: 'energy-vortexes',
+    title: 'Energy Vortexes',
+    description: 'Locations of extraordinary power where the laws of physics appear to bend',
+    color: '#61d2fb'
+  },
+  {
+    id: 'suns-stars',
+    title: 'Suns and Stars',
+    description: 'Journey to the edge of the universe and back, a tale of endurance and survival',
+    secondaryDescription: 'Introduced to something called "Not being able to breathe"',
+    color: '#fbcf61'
+  },
+  {
+    id: 'conscious-evolution',
+    title: 'Conscious Evolution',
+    description: 'Investigating unexplained leaps in human consciousness throughout history',
+    color: '#61fb61'
+  }
+];
 
 function Home() {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState(null);
-
-  const handleStoryClick = (storyId) => {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Improved navigation handler with useCallback for better performance
+  const handleStoryClick = useCallback((storyId) => {
     navigate(`/story/${storyId}`);
-  };
+  }, [navigate]);
+  
+  const handleMouseEnter = useCallback((id) => {
+    setActiveItem(id);
+  }, []);
+  
+  const handleMouseLeave = useCallback(() => {
+    setActiveItem(null);
+  }, []);
 
-  const mysteries = [
-    {
-      id: 'computer-limits',
-      title: 'Will computers reach their Limits?',
-      description: 'Deep dive into the potential of computers',
-      color: '#61dafb',
-      image: require('./images/istockphoto-1468266144-1024x1024.jpg')
-    },
-    {
-      id: 'quantum-anomalies',
-      title: 'Quantum Anomalies',
-      description: 'Phenomena that challenge our understanding of physics...',
-      color: '#9e61fb',
-      image: '/images/quantum-anomalies.jpg'
-    },
-    {
-      id: 'dimensional-rifts',
-      title: 'Dimensional Rifts',
-      description: 'Gateways between worlds that appear and vanish...',
-      color: '#fb6161'
-    },
-    {
-      id: 'cosmic-echoes',
-      title: 'Cosmic Echoes',
-      description: 'Strange signals from deep space that defy explanation...',
-      color: '#61fb8d'
-    },
-    {
-      id: 'time-slips',
-      title: 'Time Slips',
-      description: 'Moments where past and present mysteriously intersect...',
-      color: '#fbd261'
-    },
-    {
-      id: 'forbidden-knowledge',
-      title: 'Forbidden Knowledge',
-      description: 'Ancient wisdom that challenges modern understanding...',
-      color: '#fb61d2'
-    },
-    {
-      id: 'energy-vortexes',
-      title: 'Energy Vortexes',
-      description: 'Powerful locations where reality seems to bend...',
-      color: '#61d2fb'
-    },
-    {
-      id: 'suns-stars',
-      title: 'Suns and Stars',
-      description: 'To the edge of the universe and back, endure and survive...',
-      secondaryDescription: 'Introduced to something called "Not being able to breathe"',
-      color: '#fbcf61'
-    },
-    {
-      id: 'conscious-evolution',
-      title: 'Conscious Evolution',
-      description: 'Unexplained leaps in human consciousness and ability...',
-      color: '#61fb61'
-    }
-  ];
-
-  // Add fade-in animation on component mount
+  // Simulate loading state for smoother user experience
   useEffect(() => {
-    const items = document.querySelectorAll('.mystery-item');
-    items.forEach((item, index) => {
-      setTimeout(() => {
-        item.classList.add('visible');
-      }, 100 * index);
-    });
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div className="home">
       <div className="mysterious-bg">
         <GearSystem />
-        <div className="floating-orb"></div>
-        <div className="quote-banner">
+        <motion.div 
+          className="floating-orb"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+        />
+        
+        <motion.div 
+          className="quote-banner"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1 }}
+        >
           <p>"In the depths of reality, mysteries await those who dare to seek."</p>
-        </div>
+        </motion.div>
+        
         <main className="content">
-          <ul className="mystery-list">
-            {mysteries.map((mystery) => (
-              <li 
-                key={mystery.id}
-                className="mystery-item" 
-                onClick={() => handleStoryClick(mystery.id)}
-                onMouseEnter={() => setActiveItem(mystery.id)}
-                onMouseLeave={() => setActiveItem(null)}
-                style={{ 
-                  '--accent-color': mystery.color,
-                  opacity: activeItem && activeItem !== mystery.id ? 0.7 : 1
-                }}
-              >
-                <div className="mystery-content">
-                  <div className="mystery-text">
-                    <h2>{mystery.title}</h2>
-                    <p>{mystery.description}</p>
-                    {mystery.secondaryDescription && (
-                      <p className="secondary-description">{mystery.secondaryDescription}</p>
-                    )}
-                  </div>
-                  {mystery.image && (
-                    <div className="mystery-image">
-                      <img src={mystery.image} alt={mystery.title} />
-                    </div>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
+          {isLoading ? (
+            <div className="loading-container">
+              <div className="loader"></div>
+              <p>Unveiling mysteries...</p>
+            </div>
+          ) : (
+            <ul className="mystery-list">
+              <AnimatePresence>
+                {MYSTERIES_DATA.map((mystery, index) => (
+                  <MysteryItem 
+                    key={mystery.id}
+                    mystery={mystery}
+                    isActive={activeItem === null ? null : activeItem === mystery.id}
+                    onClick={() => handleStoryClick(mystery.id)}
+                    onMouseEnter={() => handleMouseEnter(mystery.id)}
+                    onMouseLeave={handleMouseLeave}
+                  />
+                ))}
+              </AnimatePresence>
+            </ul>
+          )}
         </main>
       </div>
     </div>
