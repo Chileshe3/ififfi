@@ -5,7 +5,7 @@ import GearSystem from './GearSystem';
 import '../styles/Home.css';
 import { MoreHorizontal } from 'lucide-react';
 
-// Memoized image component for performance
+// Memoized image component for performance 
 const MysteryImage = memo(({ image, title }) => (
   <div className="mystery-image">
     {image && <img src={image} alt={title} loading="lazy" />}
@@ -22,32 +22,14 @@ const MysteryItem = memo(({ mystery, isActive, onClick, onMouseEnter, onMouseLea
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.4 }}
-    style={{ 
-      '--accent-color': mystery.color,
-      opacity: isActive === false ? 0.7 : 1
-    }}
+    style={{ '--accent-color': mystery.color }}
   >
-    <div className="mystery-content">
-      <div className="mystery-text">
-        <h2>{mystery.title}</h2>
-        <p className="primary-description">{mystery.description}</p>
-        {mystery.secondaryDescription && (
-          <p className="secondary-description">{mystery.secondaryDescription}</p>
-        )}
-        <motion.div 
-          className="mystery-more"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isActive ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <button className="glass-button">
-            <span>Explore</span>
-            <MoreHorizontal size={16} />
-          </button>
-        </motion.div>
-      </div>
-      {mystery.image && <MysteryImage image={mystery.image} title={mystery.title} />}
-    </div>
+    <h2>{mystery.title}</h2>
+    <p className="primary-description">{mystery.description}</p>
+    {mystery.secondaryDescription && (
+      <p className="secondary-description">{mystery.secondaryDescription}</p>
+    )}
+    {mystery.image && <MysteryImage image={mystery.image} title={mystery.title} />}
   </motion.li>
 ));
 
@@ -142,22 +124,28 @@ function Home() {
     <div className="home">
       <div className="mysterious-bg">
         <GearSystem />
-        <motion.div 
-          className="floating-orb"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-        />
         
-        <motion.div 
-          className="quote-banner"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
-        >
-          <p>"In the depths of reality, mysteries await those who dare to seek."</p>
-        </motion.div>
-        
+        <section className="hero">
+          <h1>Unravel the Mysteries</h1>
+          <p>Discover the unknown and explore the boundaries of reality</p>
+          <button className="cta-button">Get Started</button>
+        </section>
+
+        <section className="features">
+          {MYSTERIES_DATA.slice(0, 4).map((mystery) => (
+            <div key={mystery.id} className="feature-item">
+              <h3>{mystery.title}</h3>
+              <p>{mystery.description}</p>
+            </div>
+          ))}
+        </section>
+
+        <section className="cta-section">
+          <h2>Ready to Dive Deeper?</h2>
+          <p>Embark on a journey to uncover the secrets of the universe.</p>
+          <button className="cta-button">Explore Mysteries</button>
+        </section>
+
         <main className="content">
           {isLoading ? (
             <div className="loading-container">
@@ -167,11 +155,11 @@ function Home() {
           ) : (
             <ul className="mystery-list">
               <AnimatePresence>
-                {MYSTERIES_DATA.map((mystery, index) => (
+                {MYSTERIES_DATA.map(mystery => (
                   <MysteryItem 
                     key={mystery.id}
                     mystery={mystery}
-                    isActive={activeItem === null ? null : activeItem === mystery.id}
+                    isActive={activeItem === mystery.id}
                     onClick={() => handleStoryClick(mystery.id)}
                     onMouseEnter={() => handleMouseEnter(mystery.id)}
                     onMouseLeave={handleMouseLeave}

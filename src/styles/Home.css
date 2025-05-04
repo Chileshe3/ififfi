@@ -4,7 +4,7 @@
 */
 
 /* Main container and background */
-.home {
+.home { 
   min-height: 100vh;
   padding-top: 60px;
   background-color: transparent;
@@ -48,13 +48,6 @@
   padding: 4rem 2rem;
   position: relative;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
 }
 
 /* Responsive adjustments */
@@ -189,27 +182,18 @@
 .mystery-list {
   list-style: none;
   padding: 0;
+  display: grid;
+  gap: 4rem;
   max-width: 900px;
   margin: 0 auto;
 }
 
 /* Glass morphism mystery items with refined animations and styling */
 .mystery-item {
-  padding: 2.5rem;
-  margin-bottom: 2rem;
-  cursor: pointer;
-  border-radius: 16px;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  color: #f5f5f7;
   position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-start;
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
 }
 
 /* Glass highlight effect */
@@ -329,51 +313,21 @@
 
 /* Glass styled images with refined animations */
 .mystery-image {
-  width: 220px;
-  height: 160px;
+  margin-top: 2rem;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
-  border-radius: 12px;
-  flex-shrink: 0;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-}
-
-.mystery-image::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.5s ease;
 }
 
 .mystery-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.mystery-item:hover .mystery-image {
-  transform: scale(1.05) rotate(2deg);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.mystery-item:hover .mystery-image::before {
-  opacity: 0.3;
+  transition: transform 0.5s ease;
 }
 
 .mystery-item:hover .mystery-image img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* Responsive adjustments for mobile devices */
@@ -384,8 +338,7 @@
   }
 
   .mystery-image {
-    width: 100%;
-    height: 200px;
+    height: 250px;
   }
   
   .quote-banner p {
@@ -399,22 +352,18 @@
 
 /* Glass-themed typography enhancements */
 .mystery-item h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
   background: linear-gradient(120deg, var(--accent-color, #61dafb), #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   letter-spacing: -0.5px;
   text-shadow: 0 0 0 transparent;
 }
 
 .mystery-item:hover h2 {
-  transform: translateY(-2px);
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  transform: translateX(20px);
 }
 
 .mystery-item .primary-description {
@@ -448,4 +397,129 @@
 @keyframes pulse {
   0%, 100% { opacity: 0.8; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Hero section styling */
+.hero {
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(125deg, #1a0b2e, #0f1b41);
+  color: #f5f5f7;
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(120deg, #ffffff, #d7f3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero .cta-button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a0b2e;
+  background: #61dafb;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.hero .cta-button:hover {
+  background: #4db8e6;
+}
+
+/* Feature cards section */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 4rem;
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-item {
+  position: relative;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-item h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(120deg, var(--accent-color, #61dafb), #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Call-to-action section */
+.cta-section {
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(125deg, #0f1b41, #162c59);
+  color: #f5f5f7;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.cta-section .cta-button {
+  padding: 1.5rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a0b2e;
+  background: #61dafb;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-section .cta-button:hover {
+  transform: translateY(-2px);
+  background: #4db8e6;
+  box-shadow: 0 10px 20px rgba(97, 218, 251, 0.2);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+  
+  .mystery-item h2 {
+    font-size: 2rem;
+  }
+  
+  .mystery-image {
+    height: 250px;
+  }
 }
