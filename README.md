@@ -1,10 +1,10 @@
-# 🌌 Mystical Realms - Exploring the Unknown
+# 🌌 Fact Nova- Exploring the Unknown
 
 An immersive web experience dedicated to documenting and exploring mysterious phenomena, ancient artifacts, and unexplained occurrences across time and space.
 
 ## ✨ Features
 
-- **Interactive Story Navigation**: Seamlessly explore different mysteries with smooth transitions
+- **Interactive Story Navigation**: Seamlessly explore different factswith smooth transitions
 - **Responsive Design**: Optimized for all devices from mobile to large desktop displays
 - **Dynamic Content Loading**: Lazy loading and code splitting for optimal performance
 - **Immersive UI/UX**: Beautiful animations and transitions that enhance the storytelling
@@ -39,17 +39,6 @@ Visit [http://localhost:3000](http://localhost:3000) to view the application.
 - Custom hooks for scroll and intersection observers
 - Lazy loading for optimal performance
 
-## 📖 Available Stories
-
-- Ancient Mysteries
-- Quantum Anomalies
-- Dimensional Rifts
-- Cosmic Echoes
-- Time Slips
-- Forbidden Knowledge
-- Energy Vortexes
-- Suns and Stars
-- Conscious Evolution
 
 ## 🎨 Design System
 
