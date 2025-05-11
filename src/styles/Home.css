@@ -1,3 +1,22 @@
+/* Set the entire page background to match the gradient */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(125deg, #1a0b2e, #0f1b41, #162c59);
+  background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #f5f5f7;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Ensure all containers maintain the dark background */
+body {
+  background-color: transparent;
+}
+
 .home { 
   min-height: 100vh;
   padding-top: 60px;
@@ -22,13 +41,19 @@
   100% { background-position: 0% 50%; }
 }
 
-/* Glass content container with refined spacing and responsive design */
+/* Fix for potential white space after header */
+header, nav {
+  background: linear-gradient(125deg, #1a0b2e, #0f1b41, #162c59);
+  background-attachment: fixed;
+}
+
 .content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 4rem 2rem;
   position: relative;
   z-index: 2;
+  background-color: transparent;
 }
 
 /* Responsive adjustments */
@@ -120,7 +145,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1rem;  /* reduced from 2rem */
   max-width: 800px;
   margin: 0 auto;
 }
@@ -128,7 +153,7 @@
 /* Glass morphism mystery items with refined animations and styling */
 .mystery-item {
   position: relative;
-  padding: 2rem;
+  padding: 1.5rem;  /* reduced from 2rem */
   border-radius: 0;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -151,6 +176,7 @@
   align-items: center;
   justify-content: center;
   height: 400px;
+  background-color: transparent;
 }
 
 .loader {
@@ -207,14 +233,27 @@
 /* Responsive adjustments for mobile devices */
 @media (max-width: 768px) {
   .mystery-item {
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.8rem;  /* reduced from 1.5rem 1rem */
+  }
+  
+  .mystery-item h2 {
+    font-size: 1.5rem;  /* reduced from 1.8rem */
+  }
+  
+  .mystery-item .primary-description {
+    font-size: 1rem;
+  }
+  
+  .learn-more-btn {
+    padding: 0.4rem 1.2rem;  /* reduced padding */
+    font-size: 0.85rem;
   }
 }
 
 /* Glass-themed typography enhancements */
 .mystery-item h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;  /* reduced from 2.5rem */
+  margin-bottom: 0.5rem;  /* reduced from 1rem */
   background: linear-gradient(120deg, var(--accent-color, #61dafb), #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -230,11 +269,11 @@
 }
 
 .mystery-item .primary-description {
-  font-size: 1.1rem;
+  font-size: 1rem;  /* reduced from 1.1rem */
   opacity: 0.95;
   margin: 0;
   line-height: 1.6;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;  /* reduced from 0.5rem */
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -255,8 +294,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1.5rem;
-  margin-top: 1.5rem;
+  padding: 0.4rem 1.2rem;  /* reduced padding */
+  margin-top: 1rem;  /* reduced from 1.5rem */
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--accent-color, #61dafb);
@@ -283,7 +322,7 @@
 
 @media (max-width: 768px) {
   .mystery-item h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;  /* reduced from 1.8rem */
   }
   
   .mystery-item .primary-description {
@@ -291,7 +330,45 @@
   }
   
   .learn-more-btn {
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 1rem;
     font-size: 0.85rem;
   }
+}
+
+/* Additional fix for any potential white spaces */
+main, section, div, article, aside, footer {
+  background-color: transparent;
+}
+
+/* Logo styling */
+.logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.logo-circle {
+  animation: rotate 8s linear infinite;
+  transform-origin: center;
+}
+
+.logo-shape {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.logo-text {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -1px;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
 }

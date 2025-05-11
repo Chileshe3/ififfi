@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import GearSystem from './GearSystem';
 import '../styles/Home.css';
 import { ArrowRight } from 'lucide-react';
+import Logo from './Logo';
 
 const MysteryItem = memo(({ mystery, isActive, onClick, onMouseEnter, onMouseLeave }) => (
   <motion.li 
@@ -118,8 +119,8 @@ function Home() {
         <main className="content">
           {isLoading ? (
             <div className="loading-container">
+              <Logo />
               <div className="loader"></div>
-              <p>Fact Nova...</p>
             </div>
           ) : (
             <ul className="mystery-list">
