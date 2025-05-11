@@ -36,56 +36,50 @@ const MYSTERIES_DATA = [
     id: 'computer-limits',
     title: 'Will Computers Reach Their Limits?',
     description: 'Exploring the boundaries of computational power and the future of technology',
-    color: '#61dafb'
+    
   },
   {
     id: 'quantum-anomalies',
     title: 'Quantum Anomalies',
     description: 'Phenomena that challenge our fundamental understanding of quantum physics',
-    color: '#a78bfa'
+    
   },
   {
     id: 'dimensional-rifts',
     title: 'Dimensional Rifts',
     description: 'Theoretical gateways between parallel worlds that appear and vanish inexplicably',
-    color: '#f87171'
+    
   },
   {
     id: 'cosmic-echoes',
     title: 'Cosmic Echoes',
     description: 'Unexplained signals from deep space that defy conventional astronomical analysis',
-    color: '#34d399'
   },
   {
     id: 'time-slips',
     title: 'Time Slips',
     description: 'Documented moments where past and present mysteriously intersect in our reality',
-    color: '#fcd34d'
   },
   {
     id: 'forbidden-knowledge',
     title: 'Forbidden Knowledge',
     description: 'Ancient wisdom and scientific discoveries that challenge modern understanding',
-    color: '#ec4899'
   },
   {
     id: 'energy-vortexes',
     title: 'Energy Vortexes',
     description: 'Locations of extraordinary power where the laws of physics appear to bend',
-    color: '#60a5fa'
   },
   {
     id: 'suns-stars',
     title: 'Suns and Stars',
     description: 'Journey to the edge of the universe and back, a tale of endurance and survival',
     secondaryDescription: 'Introduced to something called "Not being able to breathe"',
-    color: '#ff9500'
   },
   {
     id: 'conscious-evolution',
     title: 'Conscious Evolution',
     description: 'Investigating unexplained leaps in human consciousness throughout history',
-    color: '#10b981'
   }
 ];
 
